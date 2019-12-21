@@ -31,4 +31,6 @@ body{
 
 .answers{
 display:none;
+height:40px;
+background-color:purple;
 }
