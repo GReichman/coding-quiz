@@ -2,6 +2,10 @@ body{
     background-image: url('../pictures/intersection.png');
     font-family: 'Alata', sans-serif;
 }
+.contentContainer{
+    background-color:palegoldenrod;
+    margin-top:50px;
+}
 
 .scoreCol{
     background-color:red;
@@ -26,11 +30,14 @@ body{
 
 .answerRow{
     text-align:center;
+    
     margin-top:20px;
+
 }
 
 .answers{
 display:none;
 height:40px;
-background-color:purple;
+background:rgba(255,255,255,0.5);
+
 }

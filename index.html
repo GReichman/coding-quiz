@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Coding Quiz</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -19,7 +19,7 @@
 <body>
 
     <!-- content container -->
-    <div class="container">
+    <div class="container contentContainer">
         <div class="row headerRow">
             <div class="col-lg-6 scoreCol">
                 <p>Score: </p>
@@ -31,7 +31,7 @@
             <div class="col-lg-6 timerCol">
                 <p>Time Left: </p>
                 <p class="timer">
-                    ??
+                    0
                 </p>
 
             </div>
@@ -43,10 +43,12 @@
             </div>
             
         </div>
-        <button class="btn btn-danger" id="startButton" onclick="beginQuiz()">Start</button> 
 
         <div class="row justify-content-center answerRow">
+            
                 <div class="col-6 "id="answerCol" onclick="chooseAnswer()">
+                    <button class="btn btn-danger" id="startButton" onclick="beginQuiz()">Start</button> 
+
                     <p class="answers" id="answer1" data-answer="1">Sample Answer 1</p> 
                     <p class="answers" id="answer2" data-answer="2">Sample Answer 2</p>
                     <p class="answers" id="answer3" data-answer="3">Sample Answer 3</p>
