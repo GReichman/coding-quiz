@@ -1,7 +1,10 @@
+var currentQ;
+
+
 function beginQuiz() {
-    document.querySelector("#startButton").style.display = "none";
-    var answers = document.querySelectorAll(".answers");
-    var currentQ;
+    $("#startButton").hide();
+    var answers = $(".answers");
+    
     for (let i = 0; i < answers.length; i++) {
         answers[i].style.display = "block";
     }//for
@@ -9,15 +12,15 @@ function beginQuiz() {
 }//begin quiz
 
 function chooseAnswer() {
-    var test = event.target.dataset.answer;
+    var choice = event.target.dataset.answer;
     if (event.target.tagName.toLowerCase() === 'p') {
-       if(test==currentQ.correct || currentQ.correct===5){
+       if(choice==currentQ.correct || currentQ.correct===5){
            correctAnswer();
-           console.log("correct answer");
+           
        }
        else{
            wrongAnswer();
-           console.log("wrong answer");
+          
        }
     }
 }
@@ -35,11 +38,11 @@ function getQuestion() {
 }
 
 function wrongAnswer(){
-
+    console.log("wrong answer");
 }//wrong
 
 function correctAnswer(){
-
+    console.log("correct answer");
 }//right
 
 
