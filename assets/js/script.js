@@ -1,16 +1,20 @@
 var questionList;
 var currentQ;
 var score = 0;
+var time ;
 
 function beginQuiz() {
     $("#startButton").hide();
     questionList = questions;
+    time=(questions.length*15);
+    $(".timer").html(time);
     var answers = $(".answers");
 
     for (let i = 0; i < answers.length; i++) {
         answers[i].style.display = "block";
     }//for
     getQuestion();
+    beginTimer();
 }//begin quiz
 
 function chooseAnswer() {
@@ -61,5 +65,17 @@ function correctAnswer() {
     getQuestion();
 
 }//right
+
+function beginTimer(){
+   
+    setInterval(function(){
+        time-=1;
+        $(".timer").html(time);
+        if(time==0){
+            clearInterval();
+        }
+    },1000)
+
+}
 
 
