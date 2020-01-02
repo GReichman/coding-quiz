@@ -18,9 +18,13 @@ body{
 
 }
 
-#startButton{
+.startButtons{
     height:100px;
     width:300px;
+    
+}
+#scoreButton{
+    margin-top:5px;
 }
 
 .questionRow{

@@ -8,6 +8,7 @@ var endTime;
 
 function beginQuiz() {
     $("#startButton").hide();
+    $("#scoreButton").hide();
     questionList = questions;
     time=(questions.length*15);
     $(".timer").html(time);
@@ -123,4 +124,20 @@ function endGame(reason){
     $("#response").hide()
 }
 
+function viewScores(){
+    $("#scoreButton").one("click",resetGame);
+    console.log("view");
+    $("#startButton").hide();
+    $("#questionHeader").html("High Scores:");
+    $("#scoreButton").html("Return to Game");
+}
 
+function resetGame(){
+    $("#scoreButton").one("click",viewScores);
+    console.log("reset");
+    $("#startButton").show();
+    $("#questionHeader").html("Press The Button To Begin The Quiz");
+    $("#scoreButton").html("View High Scores");
+}
+
+$("#scoreButton").one("click",viewScores);
