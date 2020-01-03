@@ -5,11 +5,13 @@ var time;
 var timer;
 var currentTime;
 var endTime;
+var hscores=[];
 
 $("#scoreButton").one("click", viewScoresBefore);
 
 
 function beginQuiz() {
+
     $("#startButton").hide();
     $("#scoreButton").hide();
     $("#scoreButton").off();
@@ -117,21 +119,26 @@ function endGame(reason) {
     clearInterval(timer);
     if (reason === "time") {
         $(".timer").html("0");
-        $("#questionHeader").html("You Ran Out Of Time!")
-        $("#answers").html("Your score is: " + score);
+        $("#questionHeader").html("You Ran Out Of Time!");
+        $("#answers").hide();
+        $("#highscores").html("Your score is: " + score);
+        $("#highscores").show();
     }//if out of time
     else {
         $(".timer").html("0");
         $("#questionHeader").html("Quiz Complete!")
-        $("#answers").html("Your score is: " + score);
+        $("#answers").hide();
+        $("#highscores").html("Your score is: " + score);
+        $("#highscores").show();
     }//if out of questions
     $("#response").hide()
     $("#scoreButton").show();
-    $("#answers").append("<br/> <span id='tempP'>Initials: <input id='tempInput'></input></span>");
+    $("#highscores").append("<br/> <span id='tempP'>Initials: <input id='tempInput'></input></span>");
     $("#scoreButton").on("click", viewScoresAfter);
 }
 
 function viewScoresBefore() {
+    getScores();
     $("#scoreButton").one("click", resetGame);
     console.log("view");
     $("#startButton").hide();
@@ -150,6 +157,7 @@ function resetGame() {
 
 
 function viewScoresAfter() {
+    getScores();
     var initials = $("#tempInput").val();
     if (initials.length < 1 || initials.length > 3) {
         alert("initials must be 1-3 characters long")
@@ -157,7 +165,37 @@ function viewScoresAfter() {
     }
     else {
         console.log("initials are: "+initials);
-        $("#scoreButton").hide();
+        addScore(initials,score);
         $("#questionHeader").html("High Scores:");
+        displayScores();
     }
 }
+
+function displayScores(){
+    $("#tempP").remove();
+for(let i=0; i<hscores.length;i++){
+    $("#highscores").append("<p>"+hscores[i]+"</p>");
+}//for
+}
+
+function addScore(name,points){
+let record = name + ": "+points;
+hscores.push(record);
+saveScores();
+}
+
+function getScores(){
+var sc = localStorage.getItem("scores");
+if(sc!=null){
+    hscores=JSON.parse(sc);
+}
+
+}//getScores
+
+function saveScores(){
+localStorage.setItem("scores", JSON.stringify(hscores));
+}
+
+function restartGame(){
+
+}//restartGame
