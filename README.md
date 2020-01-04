@@ -3,10 +3,10 @@ https://greichman.github.io/coding-quiz/ <br/>
 By: Garrett Reichman
 
 ## Description
-    This project is a coding quiz made to build my experience with jquery and DOM manipulation. It allows the user to complete a short quiz while being timed and displays their score once they have either finished the questions or run out of time. It then stores their score in a list of high scores for later reference.
+   This project is a coding quiz made to build my experience with jquery and DOM manipulation. It allows the user to complete a short quiz while being timed and displays their score once they have either finished the questions or run out of time. It then stores their score in a list of high scores for later reference.
 
 ## Usage
-    To begin, either click the Start button to begin the quiz or the View High Scores button to view the current scores recorded in local storage.  
+   To begin, either click the Start button to begin the quiz or the View High Scores button to view the current scores recorded in local storage.  
 <br/>
     
 ![Screenshot](assets/pictures/homeScreen.png)
