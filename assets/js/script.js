@@ -5,7 +5,7 @@ var time;
 var timer;
 var currentTime;
 var endTime;
-var hscores=[];
+var hscores = [];
 
 $("#scoreButton").one("click", viewScoresBefore);
 
@@ -144,10 +144,13 @@ function viewScoresBefore() {
     $("#startButton").hide();
     $("#questionHeader").html("High Scores:");
     $("#scoreButton").html("Return to Game");
+    displayScores();
 }
 
 function resetGame() {
     $("#scoreButton").one("click", viewScoresBefore);
+    $("#highscores").empty();
+    $("#highscores").hide();
     console.log("reset");
     $("#startButton").show();
     $("#questionHeader").html("Press The Button To Begin The Quiz");
@@ -164,38 +167,40 @@ function viewScoresAfter() {
 
     }
     else {
-        console.log("initials are: "+initials);
-        addScore(initials,score);
+        console.log("initials are: " + initials);
+        addScore(initials, score);
         $("#questionHeader").html("High Scores:");
         displayScores();
     }
 }
 
-function displayScores(){
+function displayScores() {
     $("#tempP").remove();
-for(let i=0; i<hscores.length;i++){
-    $("#highscores").append("<p>"+hscores[i]+"</p>");
-}//for
+    $("#highscores").empty();
+    $("#highscores").show();
+    for (let i = 0; i < hscores.length; i++) {
+        $("#highscores").append("<p>" + hscores[i] + "</p>");
+    }//for
 }
 
-function addScore(name,points){
-let record = name + ": "+points;
-hscores.push(record);
-saveScores();
+function addScore(name, points) {
+    let record = name + ": " + points;
+    hscores.push(record);
+    saveScores();
 }
 
-function getScores(){
-var sc = localStorage.getItem("scores");
-if(sc!=null){
-    hscores=JSON.parse(sc);
-}
+function getScores() {
+    var sc = localStorage.getItem("scores");
+    if (sc != null) {
+        hscores = JSON.parse(sc);
+    }
 
 }//getScores
 
-function saveScores(){
-localStorage.setItem("scores", JSON.stringify(hscores));
+function saveScores() {
+    localStorage.setItem("scores", JSON.stringify(hscores));
 }
 
-function restartGame(){
+function restartGame() {
 
 }//restartGame
