@@ -8,6 +8,7 @@ var endTime;
 var hscores = [];
 
 $("#scoreButton").one("click", viewScoresBefore);
+$("#startButton").one("click",beginQuiz);
 
 
 function beginQuiz() {
@@ -134,7 +135,8 @@ function endGame(reason) {
     $("#response").hide()
     $("#scoreButton").show();
     $("#highscores").append("<br/> <span id='tempP'>Initials: <input id='tempInput'></input></span>");
-    $("#scoreButton").on("click", viewScoresAfter);
+    $("#scoreButton").one("click", viewScoresAfter);
+    $("#scoreButton").html("Submit")
 }
 
 function viewScoresBefore() {
@@ -143,9 +145,16 @@ function viewScoresBefore() {
     console.log("view");
     $("#startButton").hide();
     $("#questionHeader").html("High Scores:");
+    displayScores();
+    console.log(hscores);
+    $("#highscores").show();
     $("#scoreButton").html("Return to Game");
+<<<<<<< HEAD
     displayScores();
 }
+=======
+}//view scores before game starts
+>>>>>>> 9a83b506ea3afae8fe47607a65cc99942cf8f296
 
 function resetGame() {
     $("#scoreButton").one("click", viewScoresBefore);
@@ -153,9 +162,12 @@ function resetGame() {
     $("#highscores").hide();
     console.log("reset");
     $("#startButton").show();
+    $("#startButton").one("click",beginQuiz);
     $("#questionHeader").html("Press The Button To Begin The Quiz");
     $("#scoreButton").html("View High Scores");
-}
+    $("#highscores").empty();
+    $("#highscores").hide();
+}//reset game back to start button
 
 
 
@@ -164,16 +176,25 @@ function viewScoresAfter() {
     var initials = $("#tempInput").val();
     if (initials.length < 1 || initials.length > 3) {
         alert("initials must be 1-3 characters long")
+        $("#scoreButton").one("click", viewScoresAfter);
+
 
     }
     else {
         console.log("initials are: " + initials);
         addScore(initials, score);
         $("#questionHeader").html("High Scores:");
+        $("#tempP").remove();
         displayScores();
+        $("#startButton").show();
+        $("#startButton").html("Restart Game");
+        $("#startButton").one("click",restartGame);
+        $("#scoreButton").html("Clear Scores");
+        $("#scoreButton").one("click",clearScores);
     }
-}
+}//view scores after game completes
 
+<<<<<<< HEAD
 function displayScores() {
     $("#tempP").remove();
     $("#highscores").empty();
@@ -200,7 +221,37 @@ function getScores() {
 function saveScores() {
     localStorage.setItem("scores", JSON.stringify(hscores));
 }
+=======
+function displayScores(){
+for(let i=0; i<hscores.length;i++){
+    $("#highscores").append("<p>"+hscores[i]+"</p>");
+}//for
+}//displays the scores to highscores div
+
+function addScore(name,points){
+let record = name + ": "+points;
+hscores.push(record);
+saveScores();
+}//add new score to the array
+
+function getScores(){
+var sc = JSON.parse(localStorage.getItem("scores"));
+if(sc!=null && sc.length>0){
+    hscores=sc;
+}//retrieve scores from local storage
+
+}//getScores
+
+function saveScores(){
+localStorage.setItem("scores", JSON.stringify(hscores));
+}//save scores array to local storage
+function clearScores(){
+    localStorage.setItem("scores",null);
+    hscores=[];
+    $("#highscores").html("high scores have been cleared");
+}//clear scores in local storage and array
+>>>>>>> 9a83b506ea3afae8fe47607a65cc99942cf8f296
 
 function restartGame() {
 
-}//restartGame
+}//restart game after a playthrough has been completed
