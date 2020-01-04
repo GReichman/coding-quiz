@@ -186,17 +186,22 @@ function viewScoresAfter() {
         $("#startButton").one("click", restartGame);
         $("#scoreButton").html("Clear Scores");
         $("#scoreButton").one("click", clearScores);
+
     }
 }//view scores after game completes
 
 function displayScores() {
     for (let i = 0; i < hscores.length; i++) {
-        $("#highscores").append("<p>" + hscores[i] + "</p>");
+        $("#highscores").append("<p>" + hscores[i].initials+" : "+hscores[i].score + " </p>");
     }//for
 }//displays the scores to highscores div
 
 function addScore(name, points) {
-    let record = name + ": " + points;
+    // let record = name + ": " + points;
+    let record = {
+        initials: name,
+        score: points
+    };
     hscores.push(record);
     saveScores();
 }//add new score to the array
@@ -205,13 +210,16 @@ function getScores() {
     var sc = JSON.parse(localStorage.getItem("scores"));
     if (sc != null && sc.length > 0) {
         hscores = sc;
+        sortScores();
     }//retrieve scores from local storage
 
 }//getScores
 
 function saveScores() {
+    sortScores();
     localStorage.setItem("scores", JSON.stringify(hscores));
 }//save scores array to local storage
+
 function clearScores() {
     localStorage.setItem("scores", null);
     hscores = [];
@@ -224,6 +232,8 @@ function restartGame() {
     score=0;
     currentTime=0;
     endTime=0;
+
+    $("#scoreButton").unbind();
     $("#scoreButton").one("click", viewScoresBefore);
     $("#scoreButton").html("View High Scores");
     $("#startButton").one("click", beginQuiz);
@@ -234,3 +244,27 @@ function restartGame() {
     $("#highscores").hide();
     $(".score").html("0");
 }//restart game after a playthrough has been completed
+
+//https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
+function sortScores(){
+
+hscores=hscores.sort(sort);
+
+
+}
+
+function sort(a,b){
+
+    let aScore = a.score;
+    let bScore = b.score;
+    let compare = 0;
+
+    if(aScore>bScore){
+        compare=-1;
+    }
+    else if(bScore > aScore){
+        compare=1;
+    }
+    return compare;
+
+}
