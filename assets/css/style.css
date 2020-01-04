@@ -4,16 +4,20 @@ body{
 }
 .contentContainer{
     background-color:palegoldenrod;
+    border: 1px solid black;
     margin-top:50px;
 }
 
 .scoreCol{
-    background-color:red;
+    background-color:lightgray;
+    border-bottom: 1px solid black;
     text-align: center;
 }
 
 .timerCol{
-    background-color:green;
+    background-color:lightgray;
+    border-bottom: 1px solid black;
+
     text-align: center;
 
 }

@@ -42,7 +42,7 @@ function chooseAnswer() {
 
         }
     }
-}
+}//when an answer is clicked
 
 function getQuestion() {
     currentTime = time;
@@ -116,7 +116,7 @@ function beginTimer() {
         }
     }, 1000)
 
-}
+}//timer
 
 function endGame(reason) {
     clearInterval(timer);
@@ -139,7 +139,7 @@ function endGame(reason) {
     $("#highscores").append("<br/> <span id='tempP'>Initials: <input id='tempInput'></input></span>");
     $("#scoreButton").one("click", viewScoresAfter);
     $("#scoreButton").html("Submit")
-}
+}//handles game ending
 
 function viewScoresBefore() {
     getScores();
@@ -192,7 +192,7 @@ function viewScoresAfter() {
 
 function displayScores() {
     for (let i = 0; i < hscores.length; i++) {
-        $("#highscores").append("<p>" + hscores[i].initials+" : "+hscores[i].score + " </p>");
+        $("#highscores").append("<p>" + hscores[i].initials + " : " + hscores[i].score + " </p>");
     }//for
 }//displays the scores to highscores div
 
@@ -229,9 +229,9 @@ function clearScores() {
 function restartGame() {
     time = 0;
     timer = null;
-    score=0;
-    currentTime=0;
-    endTime=0;
+    score = 0;
+    currentTime = 0;
+    endTime = 0;
 
     $("#scoreButton").unbind();
     $("#scoreButton").one("click", viewScoresBefore);
@@ -246,25 +246,25 @@ function restartGame() {
 }//restart game after a playthrough has been completed
 
 //https://www.sitepoint.com/sort-an-array-of-objects-in-javascript/
-function sortScores(){
+function sortScores() {
 
-hscores=hscores.sort(sort);
+    hscores = hscores.sort(sort);
 
 
-}
+}//sort scores
 
-function sort(a,b){
+function sort(a, b) {
 
     let aScore = a.score;
     let bScore = b.score;
     let compare = 0;
 
-    if(aScore>bScore){
-        compare=-1;
+    if (aScore > bScore) {
+        compare = -1;
     }
-    else if(bScore > aScore){
-        compare=1;
+    else if (bScore > aScore) {
+        compare = 1;
     }
     return compare;
 
-}
+}//sorting algorithm
